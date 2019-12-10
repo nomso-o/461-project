@@ -17,12 +17,12 @@ UnitPrice money ,\
 CustomerId varchar(20) ,\
 Country varchar(20))'
 
-def dblogin(dbname='test', user='postgres', host='localhost',port='5432', table='product',password = 'Par832069@'):
+def dblogin(dbname='test', user='postgres', host='localhost',port='5432', table='product', password=''):
     try:
-        conn = psycopg2.connect(dbname=dbname, user=user, host=host,port=port,password =password)
+        conn = psycopg2.connect(dbname=dbname, user=user, host=host,port=port, password=password)
         cur = conn.cursor()
-        query = SCHEMA.format(table)
-        cur.execute(query)
+        #query = SCHEMA.format(table)
+        #cur.execute(query)
         conn.commit()
         return conn, cur
     except Exception as er:
@@ -30,7 +30,7 @@ def dblogin(dbname='test', user='postgres', host='localhost',port='5432', table=
         conn, cur = login(dbname=dbname, user=user, host=host,port=port, table=table)
         return conn, cur
 
-def login(dbname='imdb', user='postgres', host='localhost',port='5432', table='product'):
+def login(dbname='test', user='postgres', host='localhost',port='5432', table='product'):
     try:
         conn = psycopg2.connect(dbname=dbname, user=user, host=host,port=port)
         cur = conn.cursor()
